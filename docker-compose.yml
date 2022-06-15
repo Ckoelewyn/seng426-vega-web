@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web-backend:
+    container_name: web-backend
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    image: "venus/quantum"
+    ports:
+      - "8000:8000"
+    networks:
+      - vega-network
+  web-frontend:
+    container_name: web-frontend
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: "venus/theswitch"
+    ports:
+      - "3000:3000"
+    networks:
+      - vega-network
+networks:
+  vega-network:
+    external: true
